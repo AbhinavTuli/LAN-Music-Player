@@ -107,6 +107,6 @@ trackRoute.post('/', (req, res) => {
   });
 });
 
-app.listen(3006, () => {
+app.listen(3005, () => {
   console.log("App listening on port 3005!");
 });
