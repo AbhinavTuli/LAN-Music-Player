@@ -4,9 +4,20 @@
    <body data-gr-c-s-loaded="true" bgcolor="#E6E6FA"> <font color="red">This is some text!</font>
     <button type="button" onclick=changeIt()>Next</button>
     <script>
-        function changeIt() {
-          document.getElementById('video').innerHTML="";
-        }
+        var video = document.getElementById('video');
+        var source = document.createElement('source');
+        source.setAttribute('src', 'http://www.tools4movies.com/trailers/1012/Kill%20Bill%20Vol.3.mp4');
+        video.appendChild(source);
+        video.play();
+
+    setTimeout(function() {  
+        video.pause();
+
+        source.setAttribute('src', 'http://www.tools4movies.com/trailers/1012/Despicable%20Me%202.mp4'); 
+
+        video.load();
+        video.play();
+        }, 3000);
     </script>
 
    <video controls="" autoplay="" name="media"><source src="http://localhost:3006/tracks/5e35fd08f3b6dd08ec2c5940" type="audio/mp3"></video>
