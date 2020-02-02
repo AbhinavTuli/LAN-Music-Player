@@ -74,7 +74,7 @@ trackRoute.post('/', (req, res) => {
     }
     
     let trackName = req.body.name;
-    
+    let songName=req.file.originalname;
     // Covert buffer to Readable Stream
     const readableTrackStream = new Readable();
     readableTrackStream.push(req.file.buffer);
@@ -93,6 +93,10 @@ trackRoute.post('/', (req, res) => {
     });
 
     uploadStream.on('finish', () => {
+        db.collection('dict').insertOne({
+            Sid: id,
+            name: songName
+          });
       return res.status(201).json({ message: "File uploaded successfully, stored under Mongo ObjectID: " + id });
     });
   });
