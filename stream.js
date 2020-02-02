@@ -32,6 +32,11 @@ MongoClient.connect('mongodb://localhost/trackDB', (err, database) => {
 /**
  * GET /tracks/:trackID
  */
+
+trackRoute.get('/main', (req, res) => {
+  res.set('content-type', 'text/html');
+  res.sendFile('a.html' , { root : __dirname});
+})
 trackRoute.get('/:trackID', (req, res) => {
   try {
     var trackID = new ObjectID(req.params.trackID);
