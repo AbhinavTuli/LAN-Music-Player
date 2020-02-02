@@ -2,21 +2,26 @@
     <title> "LAN Music"</title>
    <meta name="viewport" content="width=device-width"></head>
    <body data-gr-c-s-loaded="true" bgcolor="#E6E6FA"> <font color="red">This is some text!</font>
-    <button type="button" onclick=changeIt()>Next</button>
+    <button type="button" onclick="changeIt()">Next</button>
     <script>
-        var video = document.getElementById('video');
+        function changeIt(){
+        var video = document.getElementById("boro");
+            alert(video)
         var source = document.createElement('source');
+        console.log("Yo");
         source.setAttribute('src', 'http://localhost:3006/tracks/5e36fadd728b534f9137b3af');
-        video.appendChild(source);
+        source.setAttribute('type', 'audio/mp3');
+        video.replaceChild(source,video.childNodes[0]);
         video.play();
 
-    setTimeout(function() {  
-        video.pause();
-        source.setAttribute('src', 'http://localhost:3006/tracks/5e36fadd728b534f9137b3af'); 
-        video.load();
-        video.play();
-        }, 3000);
+    // setTimeout(function() {  
+    //     video.pause();
+    //     source.setAttribute('src', 'http://localhost:3006/tracks/5e36fadd728b534f9137b3af'); 
+    //     video.load();
+    //     video.play();
+    //     }, 3000);
+    }
     </script>
 
-   <video controls="" autoplay="" name="media"><source src="http://localhost:3006/tracks/5e35fd08f3b6dd08ec2c5940" type="audio/mp3"></video>
+   <video id="boro" controls="" autoplay="" name="media"><source src="http://172.17.66.71:3006/tracks/5e35fd08f3b6dd08ec2c5940" type="audio/mp3"></video>
 </body></html>
