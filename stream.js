@@ -6,20 +6,14 @@ const mongodb = require('mongodb');
 const MongoClient = require('mongodb').MongoClient;
 const ObjectID = require('mongodb').ObjectID;
 
-/**
- * NodeJS Module dependencies.
- */
+
 const { Readable } = require('stream');
 
-/**
- * Create Express server && Express Router configuration.
- */
+
 const app = express();
 app.use('/tracks', trackRoute);
+app.use(express.static('public'));
 
-/**
- * Connect Mongo Driver to MongoDB.
- */
 let db;
 MongoClient.connect('mongodb://localhost/trackDB', (err, database) => {
   if (err) {
@@ -29,13 +23,10 @@ MongoClient.connect('mongodb://localhost/trackDB', (err, database) => {
   db = database;
 });
 
-/**
- * GET /tracks/:trackID
- */
 
 trackRoute.get('/main', (req, res) => {
   res.set('content-type', 'text/html');
-  res.sendFile('a.html' , { root : __dirname});
+  res.sendFile('index.html' , { root : __dirname});
 })
 trackRoute.get('/:trackID', (req, res) => {
   try {
@@ -65,9 +56,6 @@ trackRoute.get('/:trackID', (req, res) => {
   });
 });
 
-/**
- * POST /tracks
- */
 trackRoute.post('/', (req, res) => {
   const storage = multer.memoryStorage()
   const upload = multer({ storage: storage, limits: { fields: 1, fileSize: 15000000, files: 1, parts: 2 }});
@@ -107,6 +95,6 @@ trackRoute.post('/', (req, res) => {
   });
 });
 
-app.listen(3006, () => {
+app.listen(3005, () => {
   console.log("App listening on port 3005!");
 });
